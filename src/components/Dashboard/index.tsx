@@ -6,8 +6,10 @@ import { useEffect, useState } from "react";
 import { Betting } from "@/types";
 import { Typography } from "@mui/material";
 import { floatNumberFormat } from "../../helpers/numbers";
+import LoadingComponent from "./LoadingComponent";
 
 function Dashboard() {
+  const [loading, setLoading] = useState<boolean>(true);
   const [bettings, setBettings] = useState<Betting[]>([]);
 
   const fetchData = async () => {
@@ -16,6 +18,8 @@ function Dashboard() {
       setBettings(data);
     } catch (e) {
       return console.log(e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -34,24 +38,30 @@ function Dashboard() {
 
   return (
     <StyledRootContainer>
-      <Button onClick={createBetting}>Generate a new betting card</Button>
+      <Button onClick={createBetting} disabled={loading}>
+        Generate a new betting card
+      </Button>
       <StyledContentContainer>
-        {bettings?.map((item) => {
-          const title = item.teams.map(({ name }) => name).join(" vs ");
-          const odds = item.teams
-            .map(({ odds }) => floatNumberFormat(odds))
-            .join(" vs ");
-          const bets = item.teams.map(({ bets }) => bets).join(" vs ");
-          return (
-            <Card key={item.id}>
-              <Typography variant="h6" sx={{ fontWeight: 600 }}>
-                {title}
-              </Typography>
-              <Typography variant="subtitle1">Odds: {odds}</Typography>
-              <Typography variant="subtitle1">Bets: {bets}</Typography>
-            </Card>
-          );
-        })}
+        {loading ? (
+          <LoadingComponent />
+        ) : (
+          bettings?.map((item) => {
+            const title = item.teams.map(({ name }) => name).join(" vs ");
+            const odds = item.teams
+              .map(({ odds }) => floatNumberFormat(odds))
+              .join(" vs ");
+            const bets = item.teams.map(({ bets }) => bets).join(" vs ");
+            return (
+              <Card key={item.id}>
+                <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                  {title}
+                </Typography>
+                <Typography variant="subtitle1">Odds: {odds}</Typography>
+                <Typography variant="subtitle1">Bets: {bets}</Typography>
+              </Card>
+            );
+          })
+        )}
       </StyledContentContainer>
     </StyledRootContainer>
   );

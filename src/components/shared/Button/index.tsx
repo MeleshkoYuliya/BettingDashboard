@@ -4,9 +4,10 @@ import { ReactNode } from "react";
 interface ButtonProps {
   children: ReactNode | string | number;
   onClick: () => void;
+  disabled?: boolean;
 }
 
-function Button({ children, onClick }: ButtonProps) {
+function Button({ children, onClick, disabled }: ButtonProps) {
   return (
     <MuiButton
       sx={{
@@ -16,6 +17,7 @@ function Button({ children, onClick }: ButtonProps) {
       }}
       variant="contained"
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </MuiButton>
