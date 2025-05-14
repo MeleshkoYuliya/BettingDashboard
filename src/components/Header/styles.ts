@@ -9,4 +9,7 @@ export const StyledHeader = styled("header")(() => ({
   alignItems: "center",
   backgroundColor: "#11423B",
   color: "#ECE9E4",
+  position: 'sticky',
+  top: 0,
+  zIndex: 2,
 }));

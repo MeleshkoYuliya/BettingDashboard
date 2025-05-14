@@ -72,13 +72,13 @@ export const addBettings = (): Promise<Betting[]> => {
     teams: [
       {
         name: faker.company.name(),
-        odds: faker.number.float({max: 10}),
-        bets: faker.number.int({max: 100}),
+        odds: faker.number.float({ max: 10, min: 0.1 }),
+        bets: faker.number.int({ max: 100, min: 1 }),
       },
-           {
+      {
         name: faker.company.name(),
-        odds: faker.number.float({max: 10}),
-        bets: faker.number.int({max: 100}),
+        odds: faker.number.float({ max: 10, min: 0.1 }),
+        bets: faker.number.int({ max: 100, min: 1 }),
       },
     ],
   };

@@ -16,6 +16,7 @@ export const StyledRootContainer = styled("div")(
     gap: '24px',
     backgroundColor: '#11423B',
     boxSizing: 'border-box',
-    minHeight: 'calc(100vh - 100px)'
+    minHeight: 'calc(100vh - 100px)',
+    position: 'relative',
   })
 );

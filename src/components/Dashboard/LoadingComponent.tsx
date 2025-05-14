@@ -12,7 +12,7 @@ function LoadingComponent() {
           key={index}
           variant="rectangular"
           animation="wave"
-          sx={{ height: "100px", bgcolor: "rgba(0,0,0,0.1)" }}
+          sx={{ height: "200px", bgcolor: "rgba(0,0,0,0.1)" }}
         />
       ))}
     </>
