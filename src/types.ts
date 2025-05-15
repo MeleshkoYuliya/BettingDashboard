@@ -5,6 +5,6 @@ export type Team = {
 };
 
 export type Betting = {
-  id: number;
+  id: number | string;
   teams: Team[];
 };

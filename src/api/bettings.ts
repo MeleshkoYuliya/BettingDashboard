@@ -2,7 +2,7 @@ import { Betting } from "@/types";
 import { faker } from "@faker-js/faker";
 import { v4 as uuidv4 } from "uuid";
 
-const defaultData = [
+const defaultData: Betting[] = [
   {
     id: 1,
     teams: [
@@ -66,8 +66,9 @@ export const getBettings = (): Promise<Betting[]> => {
 
 export const addBettings = (): Promise<Betting[]> => {
   const dbData = localStorage.getItem("bettings");
-  const parsedData = dbData ? JSON.parse(dbData) : defaultData;
-  const newBetting = {
+  const parsedData: Betting[] = dbData ? JSON.parse(dbData) : defaultData;
+
+  const newBetting: Betting = {
     id: uuidv4(),
     teams: [
       {
