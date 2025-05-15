@@ -43,7 +43,7 @@ function Dashboard() {
   return (
     <StyledRootContainer>
       <Box sx={{ position: "sticky", top: "110px" }}>
-        <Button onClick={createBetting} disabled={loading}>
+        <Button onClick={createBetting} disabled={loading || createLoading}>
           Generate a new betting card
         </Button>
       </Box>
